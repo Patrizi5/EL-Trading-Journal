@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db, ITrade } from './db';
-import { ExportCSV } from './components/ExportCSV';
+import EquityChart from './components/EquityChart';
 
 export default function App() {
   const [trades, setTrades] = useState<ITrade[]>([]);
@@ -45,16 +45,21 @@ export default function App() {
           Add
         </button>
         <button onClick={() => window.open('https://gumroad.com/l/eternum-pro/29','_blank')}>
-  Export CSV (Pro - $29)
-</button>
+          Export CSV (Pro - $29)
+        </button>
       </div>
-      <ul>
-        {trades.map((t) => (
-          <li key={t.id}>
+
+      <ul className="space-y-2">
+        {trades.map(t => (
+          <li key={t.id} className="p-2 bg-gray-800 rounded">
             {t.market} {t.side} @ {t.entry}
           </li>
         ))}
       </ul>
+
+      {trades.filter(t => t.exit != null).length > 0 && (
+  <EquityChart trades={trades.filter(t => t.exit != null).map(t => ({id:t.id!, date:t.opened.toISOString(), pnl:t.pnl!}))} />
+)}
     </div>
   );
 }

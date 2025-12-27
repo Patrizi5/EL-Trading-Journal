@@ -24,3 +24,10 @@ export class EternumDB extends Dexie {
 }
 
 export const db = new EternumDB();
+
+export async function getClosedTrades() {
+  const all = await db.trades.toArray();
+  return all
+    .filter(t => t.exit !== undefined && t.pnl !== undefined)
+    .map(t => ({ id: t.id!, date: t.opened.toISOString(), pnl: t.pnl! }));
+}
