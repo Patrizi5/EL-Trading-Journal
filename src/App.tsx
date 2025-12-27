@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { db, ITrade } from './db';
+import { ExportCSV } from './components/ExportCSV';
 
-function App() {
+export default function App() {
+  const [trades, setTrades] = useState<ITrade[]>([]);
+  const [market, setMarket] = useState('EURUSD');
+  const [side, setSide] = useState<'long' | 'short'>('long');
+  const [entry, setEntry] = useState('');
+
+  useEffect(() => { db.trades.toArray().then(setTrades); }, []);
+
+  const addTrade = async () => {
+    if (!entry) return;
+    await db.trades.add({
+      market,
+      side,
+      entry: parseFloat(entry),
+      size: 1,
+      opened: new Date()
+    });
+    setEntry('');
+    setTrades(await db.trades.toArray());
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="p-4 bg-black text-white min-h-screen">
+      <h1 className="text-2xl font-bold mb-4">Eternum</h1>
+      <div className="flex gap-2 mb-4">
+        <select value={market} onChange={(e) => setMarket(e.target.value)}>
+          <option>EURUSD</option>
+          <option>BTCUSD</option>
+        </select>
+        <select value={side} onChange={(e) => setSide(e.target.value as any)}>
+          <option value="long">Long</option>
+          <option value="short">Short</option>
+        </select>
+        <input
+          className="text-black px-2"
+          placeholder="Entry price"
+          value={entry}
+          onChange={(e) => setEntry(e.target.value)}
+        />
+        <button className="bg-green-600 px-3" onClick={addTrade}>
+          Add
+        </button>
+        <button onClick={() => window.open('https://gumroad.com/l/eternum-pro/29','_blank')}>
+  Export CSV (Pro - $29)
+</button>
+      </div>
+      <ul>
+        {trades.map((t) => (
+          <li key={t.id}>
+            {t.market} {t.side} @ {t.entry}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
-
-export default App;
