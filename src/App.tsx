@@ -1,10 +1,11 @@
 // src/App.tsx
 import React, { useEffect, useState } from 'react';
-import { db, ITrade } from './db';
+import { db, ITrade, calculateERS } from './db';
 import EquityChart from './components/EquityChart';
 import PositionCalc from './components/PositionCalc';
 import PsychMirror from './components/PsychMirror';
 import ThemeToggle from './components/ThemeToggle';
+import PsychChart from './components/PsychChart';
 
 export default function App() {
   const [trades, setTrades] = useState<ITrade[]>([]);
@@ -57,7 +58,7 @@ export default function App() {
         <button className="bg-green-600 px-3" onClick={addTrade}>
           Add
         </button>
-        <button onClick={() => window.open('https://gumroad.com/l/eternum-pro/29','_blank')}>
+        <button onClick={() => window.open('https://gumroad.com/l/eternum-pro/29 ','_blank')}>
           Export CSV (Pro - $29)
         </button>
       </div>
@@ -66,14 +67,22 @@ export default function App() {
 
       <ul className="space-y-2">
         {trades.map(t => (
-          <li key={t.id} className="p-2 bg-gray-200 dark:bg-gray-800 rounded">
-            {t.market} {t.side} @ {t.entry}
+          <li key={t.id} className="p-2 bg-gray-200 dark:bg-gray-800 rounded flex items-center justify-between">
+            <span>{t.market} {t.side} @ {t.entry}</span>
+            {t.psych?.pre && <span className={`ml-2 px-2 rounded text-xs ${calculateERS(t.psych) > 60 ? 'bg-red-600' : calculateERS(t.psych) > 30 ? 'bg-yellow-600' : 'bg-green-600'}`}>ERS</span>}
           </li>
         ))}
       </ul>
 
       {trades.filter(t => t.exit != null).length > 0 && (
         <EquityChart trades={trades.filter(t => t.exit != null).map(t => ({id:t.id!, date:t.opened.toISOString(), pnl:t.pnl!}))} />
+      )}
+      
+      {trades.filter(t => t.psych?.pre).length > 0 && (
+        <>
+          <h2 className="text-xl font-bold mt-6 mb-2">ERS vs P&L</h2>
+          <PsychChart trades={trades.filter(t => t.psych?.pre && t.pnl != null).map(t => ({ ers: calculateERS(t.psych), pnl: t.pnl! }))} />
+        </>
       )}
     </div>
   );

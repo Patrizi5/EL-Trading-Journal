@@ -1,4 +1,3 @@
-// src/db.ts
 import Dexie from 'dexie';
 
 export interface ITrade {
@@ -35,4 +34,11 @@ export async function getClosedTrades() {
   return all
     .filter(t => t.exit !== undefined && t.pnl !== undefined)
     .map(t => ({ id: t.id!, date: t.opened.toISOString(), pnl: t.pnl! }));
+}
+
+// ONLY ONE calculateERS function
+export function calculateERS(psych?: ITrade['psych']): number {
+  if (!psych?.pre) return 0;
+  const p = psych.pre;
+  return (p.urgency * 2) + ((5 - p.calm) * 2) + ((5 - p.clarity) * 1.5) + (p.energy > 3 ? 1 : 0);
 }
