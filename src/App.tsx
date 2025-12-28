@@ -1,12 +1,17 @@
+// src/App.tsx
 import React, { useEffect, useState } from 'react';
 import { db, ITrade } from './db';
 import EquityChart from './components/EquityChart';
+import PositionCalc from './components/PositionCalc';
+import PsychMirror from './components/PsychMirror';
+import ThemeToggle from './components/ThemeToggle';
 
 export default function App() {
   const [trades, setTrades] = useState<ITrade[]>([]);
   const [market, setMarket] = useState('EURUSD');
   const [side, setSide] = useState<'long' | 'short'>('long');
   const [entry, setEntry] = useState('');
+  const [psychData, setPsychData] = useState<any>(null);
 
   useEffect(() => { db.trades.toArray().then(setTrades); }, []);
 
@@ -17,16 +22,24 @@ export default function App() {
       side,
       entry: parseFloat(entry),
       size: 1,
-      opened: new Date()
+      opened: new Date(),
+      psych: psychData
     });
     setEntry('');
+    setPsychData(null);
     setTrades(await db.trades.toArray());
   };
 
   return (
-    <div className="p-4 bg-black text-white min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Eternum</h1>
-      <div className="flex gap-2 mb-4">
+    <div className="p-4 min-h-screen bg-white dark:bg-black text-black dark:text-white">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-2xl font-bold">Eternum</h1>
+        <ThemeToggle />
+      </div>
+
+      <PositionCalc />
+
+      <div className="flex gap-2 mb-4 items-center">
         <select value={market} onChange={(e) => setMarket(e.target.value)}>
           <option>EURUSD</option>
           <option>BTCUSD</option>
@@ -49,17 +62,19 @@ export default function App() {
         </button>
       </div>
 
+      <PsychMirror onSave={setPsychData} />
+
       <ul className="space-y-2">
         {trades.map(t => (
-          <li key={t.id} className="p-2 bg-gray-800 rounded">
+          <li key={t.id} className="p-2 bg-gray-200 dark:bg-gray-800 rounded">
             {t.market} {t.side} @ {t.entry}
           </li>
         ))}
       </ul>
 
       {trades.filter(t => t.exit != null).length > 0 && (
-  <EquityChart trades={trades.filter(t => t.exit != null).map(t => ({id:t.id!, date:t.opened.toISOString(), pnl:t.pnl!}))} />
-)}
+        <EquityChart trades={trades.filter(t => t.exit != null).map(t => ({id:t.id!, date:t.opened.toISOString(), pnl:t.pnl!}))} />
+      )}
     </div>
   );
 }

@@ -1,3 +1,4 @@
+// src/db.ts
 import Dexie from 'dexie';
 
 export interface ITrade {
@@ -10,6 +11,10 @@ export interface ITrade {
   pnl?: number;
   opened: Date;
   closed?: Date;
+  psych?: {
+    pre: { confidence: number; calm: number; clarity: number; energy: number; urgency: number; mindset: string[]; fear: string; rules: boolean };
+    post?: { reaction: string; intensity: number; urge: boolean; urgeReason?: string; alignment: string; label?: string; pattern?: string };
+  };
 }
 
 export class EternumDB extends Dexie {
@@ -17,7 +22,7 @@ export class EternumDB extends Dexie {
 
   constructor() {
     super('Eternum');
-    this.version(1).stores({
+    this.version(2).stores({
       trades: 'id, opened'
     });
   }
