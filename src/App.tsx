@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useEffect, useState } from 'react';
 import { db, ITrade, calculateERS } from './db';
 import EquityChart from './components/EquityChart';
@@ -6,6 +5,7 @@ import PositionCalc from './components/PositionCalc';
 import PsychMirror from './components/PsychMirror';
 import ThemeToggle from './components/ThemeToggle';
 import PsychChart from './components/PsychChart';
+import TradeExit from './components/TradeExit';
 
 export default function App() {
   const [trades, setTrades] = useState<ITrade[]>([]);
@@ -13,6 +13,7 @@ export default function App() {
   const [side, setSide] = useState<'long' | 'short'>('long');
   const [entry, setEntry] = useState('');
   const [psychData, setPsychData] = useState<any>(null);
+  const [exitModal, setExitModal] = useState<ITrade | null>(null);
 
   useEffect(() => { db.trades.toArray().then(setTrades); }, []);
 
@@ -28,6 +29,11 @@ export default function App() {
     });
     setEntry('');
     setPsychData(null);
+    setTrades(await db.trades.toArray());
+  };
+
+  const handleTradeExit = async () => {
+    setExitModal(null);
     setTrades(await db.trades.toArray());
   };
 
@@ -58,7 +64,7 @@ export default function App() {
         <button className="bg-green-600 px-3" onClick={addTrade}>
           Add
         </button>
-        <button onClick={() => window.open('https://gumroad.com/l/eternum-pro/29 ','_blank')}>
+        <button onClick={() => window.open('https://gumroad.com/l/eternum-pro/29','_blank')}>
           Export CSV (Pro - $29)
         </button>
       </div>
@@ -69,6 +75,7 @@ export default function App() {
         {trades.map(t => (
           <li key={t.id} className="p-2 bg-gray-200 dark:bg-gray-800 rounded flex items-center justify-between">
             <span>{t.market} {t.side} @ {t.entry}</span>
+            {!t.exit && <button className="bg-red-600 px-2 text-xs" onClick={() => setExitModal(t)}>Exit</button>}
             {t.psych?.pre && <span className={`ml-2 px-2 rounded text-xs ${calculateERS(t.psych) > 60 ? 'bg-red-600' : calculateERS(t.psych) > 30 ? 'bg-yellow-600' : 'bg-green-600'}`}>ERS</span>}
           </li>
         ))}
@@ -84,6 +91,8 @@ export default function App() {
           <PsychChart trades={trades.filter(t => t.psych?.pre && t.pnl != null).map(t => ({ ers: calculateERS(t.psych), pnl: t.pnl! }))} />
         </>
       )}
+
+      {exitModal && <TradeExit trade={exitModal} onClose={handleTradeExit} />}
     </div>
   );
 }

@@ -36,7 +36,6 @@ export async function getClosedTrades() {
     .map(t => ({ id: t.id!, date: t.opened.toISOString(), pnl: t.pnl! }));
 }
 
-// ONLY ONE calculateERS function
 export function calculateERS(psych?: ITrade['psych']): number {
   if (!psych?.pre) return 0;
   const p = psych.pre;
