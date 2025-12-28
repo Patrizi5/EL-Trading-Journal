@@ -1,7 +1,6 @@
-// src/components/PsychMirror.tsx
 import { useState } from 'react';
 
-// INLINE EMOJI SCROLL (no external import needed)
+// INLINE EMOJI SCROLL (no external file)
 function EmojiScroll({ onPick }: { onPick: (e: string) => void }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState('😐');
@@ -25,7 +24,7 @@ function EmojiScroll({ onPick }: { onPick: (e: string) => void }) {
   );
 }
 
-// PSYCH MIRROR COMPONENT
+// PSYCHOLOGICAL MIRROR
 const MINDSETS = ['Focused & patient', 'Slightly rushed', 'Afraid of missing the move', 'Recovering from a previous loss', 'Riding confidence from a win', 'Bored / forcing action', 'Neutral'] as const;
 const REACTIONS = ['Relief', 'Satisfaction', 'Frustration', 'Anger', 'Regret', 'Indifference', 'Euphoria'] as const;
 const URGE_REASONS = ['To capitalize on momentum', 'To recover a loss', 'Felt unusually "locked in"', 'Felt unsettled / off balance'];
