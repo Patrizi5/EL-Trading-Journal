@@ -1,0 +1,24 @@
+AssetClass,Market,Symbol,Type
+Equity Index,S&P 500,SPX,Index
+Equity Index,S&P 500,ES,Futures
+Equity Index,NASDAQ 100,NDX,Index
+Equity Index,NASDAQ 100,NQ,Futures
+Forex,Major,EURUSD,Spot
+Forex,Major,GBPUSD,Spot
+Forex,Major,USDJPY,Spot
+Commodities,Energy,CL,Futures
+Commodities,Metals,GC,Futures
+Commodities,Metals,XAUUSD,Spot
+Crypto,Spot,BTCUSD,Spot
+Crypto,Spot,ETHUSD,Spot
+ETF,Index,SPY,ETF
+ETF,Index,QQQ,ETF
+Bonds,US Treasuries,ZN,Futures
+Volatility,VIX,VIX,Index
+Forex,Exotic,USDMXN,Spot
+Forex,Exotic,USDTRY,Spot
+Equity,Stocks,AAPL,Stock
+Equity,Stocks,MSFT,Stock
+Equity,Stocks,NVDA,Stock
+Equity,Stocks,TSLA,Stock
+Equity,Stocks,AMZN,Stock

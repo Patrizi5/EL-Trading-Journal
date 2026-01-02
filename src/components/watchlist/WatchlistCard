@@ -1,0 +1,80 @@
+import React from 'react';
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { MoreHorizontal, Bell, Target, Trash2, Edit2 } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { motion } from 'framer-motion';
+
+const priorityColors = {
+  high: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+  medium: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+  low: 'bg-slate-500/10 text-slate-400 border-slate-500/20'
+};
+
+export default function WatchlistCard({ item, onEdit, onDelete, index }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: index * 0.05 }}
+    >
+      <Card className="bg-slate-900/50 border-slate-800/50 backdrop-blur-xl p-5 hover:bg-slate-900/70 transition-all duration-300 group">
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-2">
+              <h3 className="text-white font-bold text-lg">{item.symbol}</h3>
+              <Badge className={`border ${priorityColors[item.priority || 'medium']}`}>
+                {item.priority || 'medium'}
+              </Badge>
+            </div>
+            
+            {item.name && (
+              <p className="text-slate-400 text-sm mb-3">{item.name}</p>
+            )}
+
+            <div className="flex flex-wrap gap-4 text-sm">
+              {item.target_price && (
+                <div className="flex items-center gap-1.5 text-slate-400">
+                  <Target className="w-4 h-4 text-emerald-400" />
+                  <span>Target: ${item.target_price.toFixed(2)}</span>
+                </div>
+              )}
+              
+              {(item.alert_above || item.alert_below) && (
+                <div className="flex items-center gap-1.5 text-slate-400">
+                  <Bell className="w-4 h-4 text-amber-400" />
+                  <span>
+                    {item.alert_above && `Above $${item.alert_above}`}
+                    {item.alert_above && item.alert_below && ' / '}
+                    {item.alert_below && `Below $${item.alert_below}`}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {item.notes && (
+              <p className="text-slate-500 text-sm mt-3 line-clamp-2">{item.notes}</p>
+            )}
+          </div>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity">
+                <MoreHorizontal className="w-4 h-4 text-slate-400" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-slate-800 border-slate-700">
+              <DropdownMenuItem onClick={() => onEdit(item)} className="text-slate-300 focus:bg-slate-700">
+                <Edit2 className="w-4 h-4 mr-2" /> Edit
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onDelete(item.id)} className="text-rose-400 focus:bg-slate-700">
+                <Trash2 className="w-4 h-4 mr-2" /> Remove
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </Card>
+    </motion.div>
+  );
+}

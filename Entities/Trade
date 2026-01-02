@@ -1,0 +1,172 @@
+{
+  "name": "Trade",
+  "type": "object",
+  "properties": {
+    "symbol": {
+      "type": "string",
+      "description": "Stock ticker symbol or pair"
+    },
+    "market_type": {
+      "type": "string",
+      "enum": [
+        "stocks",
+        "options",
+        "crypto",
+        "forex",
+        "futures",
+        "commodities"
+      ],
+      "description": "Type of market"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "long",
+        "short"
+      ],
+      "description": "Trade direction"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "closed"
+      ],
+      "default": "open"
+    },
+    "entry_price": {
+      "type": "number"
+    },
+    "exit_price": {
+      "type": "number"
+    },
+    "quantity": {
+      "type": "number"
+    },
+    "entry_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "exit_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "timeframe": {
+      "type": "string",
+      "enum": [
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "4h",
+        "1d",
+        "1w",
+        "1M"
+      ],
+      "description": "Trading timeframe"
+    },
+    "strategy": {
+      "type": "string",
+      "enum": [
+        "breakout",
+        "momentum",
+        "reversal",
+        "scalp",
+        "swing",
+        "earnings",
+        "news",
+        "technical",
+        "support_resistance",
+        "trend_following",
+        "mean_reversion",
+        "other"
+      ]
+    },
+    "setup_notes": {
+      "type": "string",
+      "description": "Pre-trade analysis and setup notes"
+    },
+    "exit_notes": {
+      "type": "string",
+      "description": "Post-trade review and lessons"
+    },
+    "psychological_notes": {
+      "type": "string",
+      "description": "Detailed psychological and emotional analysis"
+    },
+    "emotion_entry": {
+      "type": "string",
+      "enum": [
+        "confident",
+        "neutral",
+        "anxious",
+        "fomo",
+        "revenge",
+        "fearful",
+        "greedy"
+      ]
+    },
+    "emotion_exit": {
+      "type": "string",
+      "enum": [
+        "satisfied",
+        "neutral",
+        "regret",
+        "relief",
+        "frustrated",
+        "euphoric",
+        "disappointed"
+      ]
+    },
+    "discipline_rating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "How well you followed your plan (1-5)"
+    },
+    "profit_loss": {
+      "type": "number"
+    },
+    "profit_loss_percent": {
+      "type": "number"
+    },
+    "result_r": {
+      "type": "number",
+      "description": "Result in R multiples (risk units)"
+    },
+    "risk_amount": {
+      "type": "number",
+      "description": "Amount risked on this trade"
+    },
+    "stop_loss": {
+      "type": "number",
+      "description": "Stop loss price"
+    },
+    "take_profit": {
+      "type": "number",
+      "description": "Take profit target"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "screenshot_url": {
+      "type": "string",
+      "description": "Chart screenshot before entry"
+    },
+    "chart_image_url": {
+      "type": "string",
+      "description": "Chart screenshot after exit"
+    }
+  },
+  "required": [
+    "symbol",
+    "type",
+    "entry_price",
+    "quantity",
+    "entry_date"
+  ]
+}

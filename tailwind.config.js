@@ -11,12 +11,12 @@ module.exports = {
         'shell-text': '#e0e0e0',
         'shell-green': '#00ff88',
         'shell-red': '#ff3366',
-        'shell-yellow': '#ffcc00'
+        'shell-yellow': '#ffcc00',
       },
       fontFamily: {
-        'shell': ['Inter', 'system-ui', 'sans-serif']
-      }
-    }
+        shell: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

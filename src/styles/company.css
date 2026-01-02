@@ -1,0 +1,27 @@
+/* Simplified conversion of provided CSS for CompanyModule */
+.company-module { max-width: 360px; padding: 12px; background: linear-gradient(180deg,#333 0%,#222 100%); color: #ddd; border-radius:8px }
+.company-module .header { display:flex; flex-direction:column; gap:10px }
+.buy-sell-module { background: linear-gradient(180deg,#5a2b74 0%,#412a58 100%); padding:8px; border-radius:6px; color:#fff }
+.buy-sell-header { text-align:center; padding:6px 0; font-weight:700 }
+.quote-table { width:100%; }
+.buy, .sell { width:50%; vertical-align:top; }
+.buy a, .sell a { color:inherit; text-decoration:none; display:block }
+.numbers { display:block }
+.base { font-size:16px; vertical-align:bottom }
+.important { font-size:28px; margin-left:8px }
+.important.up { color: #a8ffb8 }
+.important.down { color: #ffb8b8 }
+.against { color:#c6b9c9; font-size:12px }
+.re-calculator { margin-top:8px; display:flex; gap:8px; align-items:center }
+.re-calculator input { flex:1 }
+.related-news { margin-top:10px }
+.related-news h2 { color:#f2f2f2; font-size:14px }
+.related-news-list { list-style:none; padding:0; margin:0 }
+.article-title { color:#d5d5d5; margin:6px 0 }
+.article-datetime span { color:#9a9a9a; font-style:italic; font-size:12px; margin-right:6px }
+.bio { display:flex; align-items:center; gap:8px; margin-top:8px }
+.bio-pic { width:50px; height:50px; border-radius:6px }
+.contact-link { color:#ffdf7e; text-decoration:underline }
+.divider { border:none; height:1px; background:rgba(255,255,255,0.04); margin:10px 0 }
+
+@media (max-width:480px){ .company-module{ max-width:100%; padding:8px } }

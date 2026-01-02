@@ -1,0 +1,29 @@
+{
+  "name": "Portfolio",
+  "type": "object",
+  "properties": {
+    "symbol": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "shares": {
+      "type": "number"
+    },
+    "avg_cost": {
+      "type": "number"
+    },
+    "current_price": {
+      "type": "number"
+    },
+    "sector": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "symbol",
+    "shares",
+    "avg_cost"
+  ]
+}

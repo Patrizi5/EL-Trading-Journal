@@ -1,0 +1,53 @@
+{
+  "name": "UserSettings",
+  "type": "object",
+  "properties": {
+    "theme": {
+      "type": "string",
+      "enum": [
+        "dark",
+        "light",
+        "blue"
+      ],
+      "default": "dark"
+    },
+    "default_market_type": {
+      "type": "string",
+      "enum": [
+        "stocks",
+        "options",
+        "crypto",
+        "forex",
+        "futures",
+        "commodities"
+      ]
+    },
+    "default_timeframe": {
+      "type": "string",
+      "enum": [
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "4h",
+        "1d",
+        "1w",
+        "1M"
+      ]
+    },
+    "default_risk_percent": {
+      "type": "number",
+      "description": "Default risk percentage per trade"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "notifications_enabled": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": []
+}
