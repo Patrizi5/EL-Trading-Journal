@@ -1,8 +1,6 @@
 import React from 'react';
 
 export function Dialog({ open = true, children, onOpenChange }) {
-  if (!open) return null;
-  return <div className="fixed inset-0 z-40 flex items-center justify-center">{children}</div>;
 }
 
 export function DialogContent({ children, className = '' }) {
@@ -13,4 +11,5 @@ export function DialogHeader({ children }) { return <div className="mb-2">{child
 export function DialogTitle({ children }) { return <h3 className="text-lg font-semibold">{children}</h3>; }
 export function DialogFooter({ children, className = '' }) { return <div className={`mt-3 flex justify-end gap-2 ${className}`}>{children}</div>; }
 
-export default Dialog;
+// Re-export JSX implementation from .jsx to avoid JSX in this .js file
+export { default, Dialog } from './dialog.jsx';

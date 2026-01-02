@@ -1,3 +1,13 @@
+node_modules/
+build/
+react/dist/
+assets/
+public/
+static/
+*.min.js
+.vite/
+dist/
+vite.config.js
 admin-system.js
 auth-system.js
 market-data.js

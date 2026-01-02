@@ -1,7 +1,2 @@
-import React from 'react';
-
-export function Label({ children, className = '' }) {
-  return <label className={`text-sm text-slate-400 ${className}`}>{children}</label>;
-}
-
-export default Label;
+// Re-export JSX implementation from .jsx to avoid JSX in this .js file
+export { default, Label } from './label.jsx';
