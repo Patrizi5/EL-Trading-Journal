@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Button({ children, className = '', variant = 'default', size, ...props }) {
+export function Button({ children, className = '', variant = 'default', _size, ...props }) {
   const base = 'inline-flex items-center justify-center rounded-md px-3 py-1 text-sm font-medium';
   const variants = {
     default: 'bg-emerald-600 text-white hover:bg-emerald-700',

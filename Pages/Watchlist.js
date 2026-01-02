@@ -81,7 +81,7 @@ export default function Watchlist() {
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Watchlist</h1>
-              <p className="text-slate-400 mt-1">Stocks you're tracking</p>
+              <p className="text-slate-400 mt-1">Stocks you are tracking</p>
             </div>
           </div>
           <Button 

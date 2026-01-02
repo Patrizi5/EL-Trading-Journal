@@ -1,0 +1,2320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eternum Trading — App</title>
+    <meta
+      name="description"
+      content="Professional trading journal for disciplined traders. Track performance, analyze psychology, and improve trading outcomes with enterprise-grade tools."
+    />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0a0e1a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Eternum Trading" />
+
+    <!-- Icons -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>"
+    />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/assets/manifest-PmT2gtsM.json" />
+
+    <!-- Vite React entry -->
+    <meta name="description" content="Eternum Trading — React app" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/favicon.ico" />
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .glass-effect {
+        background: rgba(26, 31, 46, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .glass-effect-light {
+        background: rgba(42, 47, 62, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .gradient-border {
+        background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        padding: 1px;
+        border-radius: 0.5rem;
+      }
+
+      .gradient-border > div {
+        background: #1a1f2e;
+        border-radius: calc(0.5rem - 1px);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #1a1f2e;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #3b82f6;
+        border-radius: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #06b6d4;
+      }
+
+      /* Loading animation */
+      .loading-dots::after {
+        content: '';
+        animation: dots 1.5s steps(4, end) infinite;
+      }
+
+      @keyframes dots {
+        0%,
+        20% {
+          content: '';
+        }
+        40% {
+          content: '.';
+        }
+        60% {
+          content: '..';
+        }
+        80%,
+        100% {
+          content: '...';
+        }
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .mobile-hidden {
+          display: none !important;
+        }
+        .mobile-full {
+          width: 100% !important;
+        }
+        .mobile-stack {
+          flex-direction: column !important;
+        }
+      }
+
+      /* Chart container responsive sizing */
+      #tradingview-chart {
+        min-height: 400px;
+      }
+
+      @media (min-width: 768px) {
+        #tradingview-chart {
+          min-height: 500px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        #tradingview-chart {
+          min-height: 600px;
+        }
+      }
+
+      /* Form focus states */
+      .form-input:focus {
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+
+      /* Button hover effects */
+      .btn-primary {
+        transition: all 0.2s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      }
+
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+
+      /* Card hover effects */
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Notification styles */
+      .notification {
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .notification.show {
+        transform: translateX(0);
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-sQfIj1zM.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C0fMuds6.css">
+  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+  <body class="bg-eternum-dark text-white font-sans overflow-x-hidden">
+    <!-- Background Canvas -->
+    <canvas id="background-canvas" class="fixed inset-0 w-full h-full -z-10"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-8 h-8 bg-gradient-to-br from-eternum-blue to-eternum-cyan rounded-lg flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-sm">E</span>
+            </div>
+            <span class="text-xl font-bold gradient-text">Eternum</span>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <button
+              class="nav-btn text-gray-300 hover:text-white transition-colors"
+              data-section="dashboard"
+            >
+              Dashboard
+            </button>
+            <button
+              class="nav-btn text-gray-300 hover:text-white transition-colors"
+              data-section="journal"
+            >
+              Journal
+            </button>
+            <button
+              class="nav-btn text-gray-300 hover:text-white transition-colors"
+              data-section="charts"
+            >
+              Charts
+            </button>
+            <button
+              class="nav-btn text-gray-300 hover:text-white transition-colors"
+              data-section="analytics"
+            >
+              Analytics
+            </button>
+            <button
+              class="nav-btn text-gray-300 hover:text-white transition-colors"
+              data-section="psychology"
+            >
+              Psychology
+            </button>
+            <button
+              class="nav-btn text-gray-300 hover:text-white transition-colors"
+              data-section="notes"
+            >
+              Notes
+            </button>
+            <button
+              class="nav-btn text-gray-300 hover:text-white transition-colors mobile-hidden"
+              data-section="admin"
+            >
+              Admin
+            </button>
+          </div>
+
+          <!-- User Menu -->
+          <div class="flex items-center space-x-4">
+            <!-- Theme Toggle -->
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg glass-effect-light hover:bg-eternum-light-gray transition-colors"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+
+            <!-- User Avatar -->
+            <div class="relative">
+              <button
+                id="user-menu-btn"
+                class="flex items-center space-x-2 p-2 rounded-lg glass-effect-light hover:bg-eternum-light-gray transition-colors"
+              >
+                <div
+                  class="w-8 h-8 bg-gradient-to-br from-eternum-green to-eternum-cyan rounded-full flex items-center justify-center"
+                >
+                  <span class="text-white font-medium text-sm" id="user-initial">U</span>
+                </div>
+                <span class="hidden sm:block text-sm font-medium" id="user-name">User</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- User Menu Dropdown -->
+              <div
+                id="user-menu"
+                class="hidden absolute right-0 mt-2 w-48 glass-effect rounded-lg shadow-lg z-50"
+              >
+                <div class="py-1">
+                  <button
+                    class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-eternum-light-gray transition-colors"
+                    onclick="app.showSettings()"
+                  >
+                    Settings
+                  </button>
+                  <button
+                    class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-eternum-light-gray transition-colors"
+                    onclick="app.showProfile()"
+                  >
+                    Profile
+                  </button>
+                  <button
+                    class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-eternum-light-gray transition-colors"
+                    onclick="app.exportData()"
+                  >
+                    Export Data
+                  </button>
+                  <hr class="my-1 border-eternum-light-gray" />
+                  <button
+                    class="w-full text-left px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-eternum-light-gray transition-colors"
+                    onclick="app.logout()"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button
+              id="mobile-menu-btn"
+              class="md:hidden p-2 rounded-lg glass-effect-light hover:bg-eternum-light-gray transition-colors"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden glass-effect border-t border-eternum-light-gray"
+      >
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <button
+            class="mobile-nav-btn w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-eternum-light-gray rounded-lg transition-colors"
+            data-section="dashboard"
+          >
+            Dashboard
+          </button>
+          <button
+            class="mobile-nav-btn w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-eternum-light-gray rounded-lg transition-colors"
+            data-section="journal"
+          >
+            Journal
+          </button>
+          <button
+            class="mobile-nav-btn w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-eternum-light-gray rounded-lg transition-colors"
+            data-section="charts"
+          >
+            Charts
+          </button>
+          <button
+            class="mobile-nav-btn w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-eternum-light-gray rounded-lg transition-colors"
+            data-section="analytics"
+          >
+            Analytics
+          </button>
+          <button
+            class="mobile-nav-btn w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-eternum-light-gray rounded-lg transition-colors"
+            data-section="psychology"
+          >
+            Psychology
+          </button>
+          <button
+            class="mobile-nav-btn w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-eternum-light-gray rounded-lg transition-colors"
+            data-section="notes"
+          >
+            Notes
+          </button>
+          <button
+            class="mobile-nav-btn w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-eternum-light-gray rounded-lg transition-colors"
+            data-section="admin"
+          >
+            Admin
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16 min-h-screen">
+      <!-- Welcome Section (Unauthenticated) -->
+      <section id="welcome-section" class="hidden py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="animate-float mb-8">
+            <div
+              class="w-24 h-24 bg-gradient-to-br from-eternum-blue to-eternum-cyan rounded-2xl flex items-center justify-center mx-auto mb-6"
+            >
+              <span class="text-4xl">📈</span>
+            </div>
+          </div>
+
+          <h1 class="text-4xl md:text-6xl font-bold mb-6">
+            <span class="gradient-text">Eternum</span> Trading Journal
+          </h1>
+
+          <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Professional trading performance platform for disciplined traders. Track, analyze, and
+            improve your trading with enterprise-grade tools.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <button
+              id="get-started-btn"
+              class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-8 py-3 rounded-lg font-semibold"
+            >
+              Get Started Free
+            </button>
+            <button
+              id="login-btn"
+              class="glass-effect px-8 py-3 rounded-lg font-semibold hover:bg-eternum-light-gray transition-colors"
+            >
+              Sign In
+            </button>
+          </div>
+
+          <!-- Features Grid -->
+          <div class="grid md:grid-cols-3 gap-6 text-left">
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-blue rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Advanced Analytics</h3>
+              <p class="text-gray-400">
+                Comprehensive performance tracking with detailed statistics and insights.
+              </p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-green rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Psychology Tracking</h3>
+              <p class="text-gray-400">
+                Monitor emotional patterns and trading psychology for better decision making.
+              </p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-purple rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Enterprise Security</h3>
+              <p class="text-gray-400">
+                Bank-level security with GDPR compliance and data encryption.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Section -->
+      <section id="dashboard-section" class="hidden py-6 px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Page Header -->
+          <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Dashboard</h1>
+            <p class="text-gray-400">Welcome back! Here's your trading performance overview.</p>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 bg-eternum-green rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                    ></path>
+                  </svg>
+                </div>
+                <span
+                  class="text-xs text-eternum-green bg-eternum-green bg-opacity-20 px-2 py-1 rounded-full"
+                  >+12.5%</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="total-pnl">$2,450.00</h3>
+              <p class="text-gray-400 text-sm">Total P&L</p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 bg-eternum-blue rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <span
+                  class="text-xs text-eternum-blue bg-eternum-blue bg-opacity-20 px-2 py-1 rounded-full"
+                  >68%</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="win-rate">68%</h3>
+              <p class="text-gray-400 text-sm">Win Rate</p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-12 h-12 bg-eternum-yellow rounded-lg flex items-center justify-center"
+                >
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                    ></path>
+                  </svg>
+                </div>
+                <span
+                  class="text-xs text-eternum-yellow bg-eternum-yellow bg-opacity-20 px-2 py-1 rounded-full"
+                  >1.8</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="risk-reward">1.8</h3>
+              <p class="text-gray-400 text-sm">Avg R:R</p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-12 h-12 bg-eternum-purple rounded-lg flex items-center justify-center"
+                >
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <span
+                  class="text-xs text-eternum-purple bg-eternum-purple bg-opacity-20 px-2 py-1 rounded-full"
+                  >7d</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="avg-hold-time">2.5h</h3>
+              <p class="text-gray-400 text-sm">Avg Hold Time</p>
+            </div>
+          </div>
+
+          <!-- Charts and Recent Activity -->
+          <div class="grid lg:grid-cols-3 gap-6">
+            <!-- Performance Chart -->
+            <div class="lg:col-span-2 glass-effect rounded-lg p-6">
+              <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-semibold">Performance</h2>
+                <div class="flex space-x-2">
+                  <button
+                    class="chart-period-btn active px-3 py-1 text-sm rounded-md bg-eternum-blue text-white"
+                    data-period="7d"
+                  >
+                    7D
+                  </button>
+                  <button
+                    class="chart-period-btn px-3 py-1 text-sm rounded-md text-gray-400 hover:text-white hover:bg-eternum-light-gray"
+                    data-period="30d"
+                  >
+                    30D
+                  </button>
+                  <button
+                    class="chart-period-btn px-3 py-1 text-sm rounded-md text-gray-400 hover:text-white hover:bg-eternum-light-gray"
+                    data-period="90d"
+                  >
+                    90D
+                  </button>
+                  <button
+                    class="chart-period-btn px-3 py-1 text-sm rounded-md text-gray-400 hover:text-white hover:bg-eternum-light-gray"
+                    data-period="1y"
+                  >
+                    1Y
+                  </button>
+                </div>
+              </div>
+              <div
+                id="performance-chart"
+                class="h-64 flex items-center justify-center text-gray-400"
+              >
+                <canvas id="performance-canvas" class="w-full h-full"></canvas>
+              </div>
+            </div>
+
+            <!-- Recent Trades -->
+            <div class="glass-effect rounded-lg p-6">
+              <h2 class="text-xl font-semibold mb-6">Recent Trades</h2>
+              <div id="recent-trades" class="space-y-4">
+                <!-- Recent trades will be populated by JavaScript -->
+              </div>
+              <button
+                class="w-full mt-4 text-eternum-blue hover:text-eternum-cyan transition-colors text-sm font-medium"
+              >
+                View All Trades →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Journal Section -->
+      <section id="journal-section" class="hidden py-6 px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Page Header -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
+            <div>
+              <h1 class="text-3xl font-bold mb-2">Trading Journal</h1>
+              <p class="text-gray-400">
+                Record and analyze your trades for continuous improvement.
+              </p>
+            </div>
+            <button
+              id="new-trade-btn"
+              class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-6 py-3 rounded-lg font-semibold mt-4 sm:mt-0"
+            >
+              <svg
+                class="w-5 h-5 inline mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                ></path>
+              </svg>
+              New Trade
+            </button>
+          </div>
+
+          <!-- Filters and Search -->
+          <div class="glass-effect rounded-lg p-6 mb-6">
+            <div
+              class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0"
+            >
+              <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                <select
+                  id="market-filter"
+                  class="form-input bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-2 text-white focus:outline-none focus:border-eternum-blue"
+                >
+                  <option value="">All Markets</option>
+                  <option value="forex">Forex</option>
+                  <option value="crypto">Crypto</option>
+                  <option value="stocks">Stocks</option>
+                  <option value="indices">Indices</option>
+                  <option value="commodities">Commodities</option>
+                </select>
+
+                <select
+                  id="outcome-filter"
+                  class="form-input bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-2 text-white focus:outline-none focus:border-eternum-blue"
+                >
+                  <option value="">All Outcomes</option>
+                  <option value="win">Win</option>
+                  <option value="loss">Loss</option>
+                  <option value="break-even">Break Even</option>
+                </select>
+
+                <select
+                  id="strategy-filter"
+                  class="form-input bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-2 text-white focus:outline-none focus:border-eternum-blue"
+                >
+                  <option value="">All Strategies</option>
+                  <option value="swing">Swing Trading</option>
+                  <option value="day">Day Trading</option>
+                  <option value="scalp">Scalping</option>
+                  <option value="position">Position Trading</option>
+                </select>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <div class="relative">
+                  <input
+                    type="text"
+                    id="search-trades"
+                    placeholder="Search trades..."
+                    class="form-input bg-eternum-gray border border-eternum-light-gray rounded-lg pl-10 pr-4 py-2 text-white focus:outline-none focus:border-eternum-blue"
+                  />
+                  <svg
+                    class="w-5 h-5 absolute left-3 top-2.5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                </div>
+
+                <button
+                  id="export-trades-btn"
+                  class="glass-effect px-4 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trades Table -->
+          <div class="glass-effect rounded-lg overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead class="bg-eternum-gray">
+                  <tr>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
+                      Date
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
+                      Market
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
+                      Direction
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
+                      Entry
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
+                      Exit
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
+                      P&L
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
+                      R:R
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="trades-table-body" class="divide-y divide-eternum-light-gray">
+                  <!-- Trades will be populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="flex items-center justify-between mt-6">
+            <div class="text-sm text-gray-400">
+              Showing <span id="trades-showing">1-10</span> of
+              <span id="trades-total">24</span> trades
+            </div>
+            <div class="flex space-x-2">
+              <button
+                id="prev-page"
+                class="glass-effect px-3 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  ></path>
+                </svg>
+              </button>
+              <button
+                id="next-page"
+                class="glass-effect px-3 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <section id="charts-section" class="hidden py-6 px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Page Header -->
+          <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Live Charts</h1>
+            <p class="text-gray-400">Real-time market data and analysis tools.</p>
+          </div>
+
+          <!-- Chart Controls -->
+          <div class="glass-effect rounded-lg p-6 mb-6">
+            <div
+              class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0"
+            >
+              <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                <select
+                  id="chart-market"
+                  class="form-input bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-2 text-white focus:outline-none focus:border-eternum-blue"
+                >
+                  <option value="FX_IDC:EURUSD">EUR/USD</option>
+                  <option value="COINBASE:BTCUSD">Bitcoin (BTC/USD)</option>
+                  <option value="NASDAQ:AAPL">Apple (AAPL)</option>
+                  <option value="FX_IDC:GBPUSD">GBP/USD</option>
+                  <option value="COINBASE:ETHUSD">Ethereum (ETH/USD)</option>
+                  <option value="NASDAQ:TSLA">Tesla (TSLA)</option>
+                </select>
+
+                <select
+                  id="chart-timeframe"
+                  class="form-input bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-2 text-white focus:outline-none focus:border-eternum-blue"
+                >
+                  <option value="1">1m</option>
+                  <option value="5">5m</option>
+                  <option value="15">15m</option>
+                  <option value="60">1h</option>
+                  <option value="240">4h</option>
+                  <option value="1D" selected>1D</option>
+                  <option value="1W">1W</option>
+                </select>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <button
+                  id="chart-draw-btn"
+                  class="glass-effect px-4 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                    ></path>
+                  </svg>
+                </button>
+
+                <button
+                  id="chart-indicator-btn"
+                  class="glass-effect px-4 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+                    ></path>
+                  </svg>
+                </button>
+
+                <button
+                  id="chart-fullscreen-btn"
+                  class="glass-effect px-4 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TradingView Chart -->
+          <div class="glass-effect rounded-lg p-6">
+            <div id="tradingview-chart" class="w-full h-96 lg:h-[600px]"></div>
+          </div>
+
+          <!-- Market Info -->
+          <div class="grid md:grid-cols-3 gap-6 mt-6">
+            <div class="glass-effect rounded-lg p-6">
+              <h3 class="text-lg font-semibold mb-4">Market Info</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Current Price</span>
+                  <span id="current-price" class="font-mono">-</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">24h Change</span>
+                  <span id="price-change" class="font-mono">-</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">24h Volume</span>
+                  <span id="volume" class="font-mono">-</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6">
+              <h3 class="text-lg font-semibold mb-4">Quick Trade</h3>
+              <div class="space-y-3">
+                <button
+                  class="w-full bg-eternum-green hover:bg-opacity-80 text-white py-2 rounded-lg transition-colors"
+                >
+                  Buy/Long
+                </button>
+                <button
+                  class="w-full bg-eternum-red hover:bg-opacity-80 text-white py-2 rounded-lg transition-colors"
+                >
+                  Sell/Short
+                </button>
+                <p class="text-xs text-gray-400 text-center">
+                  Quick trade buttons for journaling purposes
+                </p>
+              </div>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6">
+              <h3 class="text-lg font-semibold mb-4">Position Calculator</h3>
+              <div class="space-y-3">
+                <div>
+                  <label class="block text-sm text-gray-400 mb-1">Account Size</label>
+                  <input
+                    type="number"
+                    id="account-size"
+                    class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded px-3 py-2 text-white text-sm focus:outline-none focus:border-eternum-blue"
+                    placeholder="10000"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm text-gray-400 mb-1">Risk %</label>
+                  <input
+                    type="number"
+                    id="risk-percent"
+                    class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded px-3 py-2 text-white text-sm focus:outline-none focus:border-eternum-blue"
+                    placeholder="2"
+                    step="0.1"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm text-gray-400 mb-1">Stop Loss (pips)</label>
+                  <input
+                    type="number"
+                    id="stop-loss-pips"
+                    class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded px-3 py-2 text-white text-sm focus:outline-none focus:border-eternum-blue"
+                    placeholder="50"
+                  />
+                </div>
+                <div class="pt-2 border-t border-eternum-light-gray">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-gray-400">Position Size:</span>
+                    <span id="position-size" class="font-mono text-eternum-blue">-</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-gray-400">Risk Amount:</span>
+                    <span id="risk-amount" class="font-mono text-eternum-green">-</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics Section -->
+      <section id="analytics-section" class="hidden py-6 px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Page Header -->
+          <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Analytics</h1>
+            <p class="text-gray-400">Deep insights into your trading performance and patterns.</p>
+          </div>
+
+          <!-- Analytics Grid -->
+          <div class="grid lg:grid-cols-2 gap-6 mb-8">
+            <!-- Performance Overview -->
+            <div class="glass-effect rounded-lg p-6">
+              <h2 class="text-xl font-semibold mb-6">Performance Overview</h2>
+              <div id="performance-overview-chart" class="h-64">
+                <canvas id="overview-canvas" class="w-full h-full"></canvas>
+              </div>
+            </div>
+
+            <!-- Strategy Performance -->
+            <div class="glass-effect rounded-lg p-6">
+              <h2 class="text-xl font-semibold mb-6">Strategy Performance</h2>
+              <div id="strategy-performance-chart" class="h-64">
+                <canvas id="strategy-canvas" class="w-full h-full"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Analytics -->
+          <div class="grid lg:grid-cols-3 gap-6">
+            <!-- Monthly Performance -->
+            <div class="glass-effect rounded-lg p-6">
+              <h2 class="text-xl font-semibold mb-6">Monthly Performance</h2>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-3 bg-eternum-gray rounded-lg">
+                  <span class="text-sm">December 2025</span>
+                  <span class="text-eternum-green font-mono">+$1,250</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-eternum-gray rounded-lg">
+                  <span class="text-sm">November 2025</span>
+                  <span class="text-eternum-red font-mono">-$450</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-eternum-gray rounded-lg">
+                  <span class="text-sm">October 2025</span>
+                  <span class="text-eternum-green font-mono">+$890</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Best/Worst Trades -->
+            <div class="glass-effect rounded-lg p-6">
+              <h2 class="text-xl font-semibold mb-6">Best & Worst</h2>
+              <div class="space-y-4">
+                <div>
+                  <h3 class="text-sm text-gray-400 mb-2">Best Trade</h3>
+                  <div class="p-3 bg-eternum-green bg-opacity-20 rounded-lg">
+                    <div class="flex justify-between items-center mb-1">
+                      <span class="font-medium">EUR/USD Long</span>
+                      <span class="text-eternum-green font-mono">+$450</span>
+                    </div>
+                    <p class="text-xs text-gray-400">Dec 15, 2025 • Swing Trade</p>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 class="text-sm text-gray-400 mb-2">Worst Trade</h3>
+                  <div class="p-3 bg-eternum-red bg-opacity-20 rounded-lg">
+                    <div class="flex justify-between items-center mb-1">
+                      <span class="font-medium">BTC/USD Short</span>
+                      <span class="text-eternum-red font-mono">-$320</span>
+                    </div>
+                    <p class="text-xs text-gray-400">Dec 12, 2025 • Day Trade</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trading Stats -->
+            <div class="glass-effect rounded-lg p-6">
+              <h2 class="text-xl font-semibold mb-6">Trading Stats</h2>
+              <div class="space-y-4">
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Total Trades</span>
+                  <span class="font-mono">156</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Winning Trades</span>
+                  <span class="font-mono text-eternum-green">106</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Losing Trades</span>
+                  <span class="font-mono text-eternum-red">50</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Avg Win</span>
+                  <span class="font-mono text-eternum-green">$85</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Avg Loss</span>
+                  <span class="font-mono text-eternum-red">$45</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Profit Factor</span>
+                  <span class="font-mono text-eternum-blue">2.1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Psychology Section -->
+      <section id="psychology-section" class="hidden py-6 px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Page Header -->
+          <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Trading Psychology</h1>
+            <p class="text-gray-400">
+              Understand your emotional patterns and improve decision making.
+            </p>
+          </div>
+
+          <!-- Psychology Overview -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-green rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="discipline-score">78%</h3>
+              <p class="text-gray-400 text-sm">Discipline Score</p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-blue rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="emotional-balance">Good</h3>
+              <p class="text-gray-400 text-sm">Emotional Balance</p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-yellow rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="impulse-score">Low</h3>
+              <p class="text-gray-400 text-sm">Impulse Trading</p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-purple rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="confidence-level">High</h3>
+              <p class="text-gray-400 text-sm">Confidence</p>
+            </div>
+          </div>
+
+          <!-- Psychology Charts -->
+          <div class="grid lg:grid-cols-2 gap-6 mb-8">
+            <!-- Emotions Timeline -->
+            <div class="glass-effect rounded-lg p-6">
+              <h2 class="text-xl font-semibold mb-6">Emotional Patterns</h2>
+              <div id="emotions-chart" class="h-64">
+                <canvas id="emotions-canvas" class="w-full h-full"></canvas>
+              </div>
+            </div>
+
+            <!-- Decision Quality -->
+            <div class="glass-effect rounded-lg p-6">
+              <h2 class="text-xl font-semibold mb-6">Decision Quality</h2>
+              <div id="decision-chart" class="h-64">
+                <canvas id="decision-canvas" class="w-full h-full"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Psychology Insights -->
+          <div class="glass-effect rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-6">Psychology Insights</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-medium mb-4 text-eternum-green">Strengths</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-eternum-green" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="text-sm">Strong risk management discipline</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-eternum-green" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="text-sm">Consistent following of trading plan</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-eternum-green" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="text-sm">Good emotional control during losses</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="text-lg font-medium mb-4 text-eternum-red">Areas for Improvement</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-eternum-red" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="text-sm">Tendency to revenge trade after losses</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-eternum-red" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="text-sm">Sometimes exit winning trades too early</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-eternum-red" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="text-sm">Over-trading during low volatility periods</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Notes Section -->
+      <section id="notes-section" class="hidden py-6 px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Page Header -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
+            <div>
+              <h1 class="text-3xl font-bold mb-2">Trading Notes</h1>
+              <p class="text-gray-400">
+                Capture your market insights, strategies, and reflections.
+              </p>
+            </div>
+            <button
+              id="new-note-btn"
+              class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-6 py-3 rounded-lg font-semibold mt-4 sm:mt-0"
+            >
+              <svg
+                class="w-5 h-5 inline mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                ></path>
+              </svg>
+              New Note
+            </button>
+          </div>
+
+          <!-- Notes Categories -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <button
+              class="note-category-btn active px-4 py-2 rounded-lg glass-effect hover:bg-eternum-light-gray transition-colors text-sm"
+              data-category="all"
+            >
+              All Notes
+            </button>
+            <button
+              class="note-category-btn px-4 py-2 rounded-lg glass-effect hover:bg-eternum-light-gray transition-colors text-sm"
+              data-category="market-analysis"
+            >
+              Market Analysis
+            </button>
+            <button
+              class="note-category-btn px-4 py-2 rounded-lg glass-effect hover:bg-eternum-light-gray transition-colors text-sm"
+              data-category="strategy"
+            >
+              Strategy
+            </button>
+            <button
+              class="note-category-btn px-4 py-2 rounded-lg glass-effect hover:bg-eternum-light-gray transition-colors text-sm"
+              data-category="reflection"
+            >
+              Reflection
+            </button>
+            <button
+              class="note-category-btn px-4 py-2 rounded-lg glass-effect hover:bg-eternum-light-gray transition-colors text-sm"
+              data-category="goals"
+            >
+              Goals
+            </button>
+          </div>
+
+          <!-- Notes Grid -->
+          <div id="notes-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Notes will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Admin Section -->
+      <section id="admin-section" class="hidden py-6 px-4">
+        <div class="max-w-7xl mx-auto">
+          <!-- Page Header -->
+          <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2">Admin Panel</h1>
+            <p class="text-gray-400">System management and user administration.</p>
+          </div>
+
+          <!-- Admin Stats -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-blue rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="total-users">1,247</h3>
+              <p class="text-gray-400 text-sm">Total Users</p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-green rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="active-users">892</h3>
+              <p class="text-gray-400 text-sm">Active Users</p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-yellow rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="total-trades">15,634</h3>
+              <p class="text-gray-400 text-sm">Total Trades</p>
+            </div>
+
+            <div class="glass-effect rounded-lg p-6 card-hover">
+              <div
+                class="w-12 h-12 bg-eternum-purple rounded-lg flex items-center justify-center mb-4"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-1" id="system-uptime">99.9%</h3>
+              <p class="text-gray-400 text-sm">System Uptime</p>
+            </div>
+          </div>
+
+          <!-- Admin Tabs -->
+          <div class="glass-effect rounded-lg overflow-hidden">
+            <div class="border-b border-eternum-light-gray">
+              <nav class="flex space-x-8 px-6">
+                <button
+                  class="admin-tab-btn py-4 px-1 border-b-2 border-eternum-blue text-eternum-blue"
+                  data-tab="users"
+                >
+                  Users
+                </button>
+                <button
+                  class="admin-tab-btn py-4 px-1 border-b-2 border-transparent text-gray-400 hover:text-white"
+                  data-tab="system"
+                >
+                  System
+                </button>
+                <button
+                  class="admin-tab-btn py-4 px-1 border-b-2 border-transparent text-gray-400 hover:text-white"
+                  data-tab="content"
+                >
+                  Content
+                </button>
+                <button
+                  class="admin-tab-btn py-4 px-1 border-b-2 border-transparent text-gray-400 hover:text-white"
+                  data-tab="analytics"
+                >
+                  Analytics
+                </button>
+              </nav>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="admin-users-tab" class="admin-tab-content p-6">
+              <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-semibold">User Management</h2>
+                <div class="flex items-center space-x-4">
+                  <input
+                    type="text"
+                    placeholder="Search users..."
+                    class="form-input bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-2 text-white focus:outline-none focus:border-eternum-blue"
+                  />
+                  <button
+                    class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-4 py-2 rounded-lg font-medium"
+                  >
+                    Add User
+                  </button>
+                </div>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full">
+                  <thead class="bg-eternum-gray">
+                    <tr>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                      >
+                        User
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                      >
+                        Status
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                      >
+                        Role
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                      >
+                        Joined
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                      >
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-eternum-light-gray">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div
+                            class="w-10 h-10 bg-gradient-to-br from-eternum-blue to-eternum-cyan rounded-full flex items-center justify-center mr-3"
+                          >
+                            <span class="text-white font-medium text-sm">JD</span>
+                          </div>
+                          <div>
+                            <div class="text-sm font-medium">John Doe</div>
+                            <div class="text-sm text-gray-400">john@example.com</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-eternum-green bg-opacity-20 text-eternum-green"
+                          >Active</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">User</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">Dec 1, 2025</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <button class="text-eternum-blue hover:text-eternum-cyan">Edit</button>
+                        <span class="text-gray-400 mx-2">|</span>
+                        <button class="text-eternum-red hover:text-red-400">Delete</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- System Tab -->
+            <div id="admin-system-tab" class="admin-tab-content hidden p-6">
+              <h2 class="text-xl font-semibold mb-6">System Health</h2>
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                  <h3 class="text-lg font-medium">Performance Metrics</h3>
+                  <div class="space-y-3">
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">CPU Usage</span>
+                      <span class="font-mono">23%</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Memory Usage</span>
+                      <span class="font-mono">4.2GB / 8GB</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Disk Space</span>
+                      <span class="font-mono">156GB / 250GB</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Network I/O</span>
+                      <span class="font-mono">2.3MB/s</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <h3 class="text-lg font-medium">Recent Events</h3>
+                  <div class="space-y-3">
+                    <div class="p-3 bg-eternum-gray rounded-lg">
+                      <div class="flex items-center space-x-2 mb-1">
+                        <div class="w-2 h-2 bg-eternum-green rounded-full"></div>
+                        <span class="text-sm font-medium">System backup completed</span>
+                      </div>
+                      <p class="text-xs text-gray-400">2 hours ago</p>
+                    </div>
+                    <div class="p-3 bg-eternum-gray rounded-lg">
+                      <div class="flex items-center space-x-2 mb-1">
+                        <div class="w-2 h-2 bg-eternum-blue rounded-full"></div>
+                        <span class="text-sm font-medium">Security scan completed</span>
+                      </div>
+                      <p class="text-xs text-gray-400">6 hours ago</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content Tab -->
+            <div id="admin-content-tab" class="admin-tab-content hidden p-6">
+              <h2 class="text-xl font-semibold mb-6">Content Moderation</h2>
+              <p class="text-gray-400">
+                Content moderation tools and user-generated content management.
+              </p>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div id="admin-analytics-tab" class="admin-tab-content hidden p-6">
+              <h2 class="text-xl font-semibold mb-6">Business Analytics</h2>
+              <p class="text-gray-400">
+                Comprehensive business intelligence and platform analytics.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Login/Register Modal -->
+    <div id="auth-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+      <div class="relative glass-effect rounded-lg p-8 max-w-md w-full">
+        <button id="close-auth-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+
+        <!-- Login Form -->
+        <div id="login-form" class="auth-form">
+          <h2 class="text-2xl font-bold mb-6 text-center">Welcome Back</h2>
+          <form class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+              <input
+                type="email"
+                id="login-email"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="Enter your email"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+              <input
+                type="password"
+                id="login-password"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="Enter your password"
+              />
+            </div>
+            <div class="flex items-center justify-between">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="rounded border-eternum-light-gray bg-eternum-gray text-eternum-blue focus:ring-eternum-blue"
+                />
+                <span class="ml-2 text-sm text-gray-300">Remember me</span>
+              </label>
+              <button type="button" class="text-sm text-eternum-blue hover:text-eternum-cyan">
+                Forgot password?
+              </button>
+            </div>
+            <button
+              type="submit"
+              class="w-full btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white py-3 rounded-lg font-semibold"
+            >
+              Sign In
+            </button>
+          </form>
+          <p class="mt-6 text-center text-sm text-gray-400">
+            Don't have an account?
+            <button
+              id="show-register"
+              class="text-eternum-blue hover:text-eternum-cyan font-medium"
+            >
+              Sign up
+            </button>
+          </p>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form" class="auth-form hidden">
+          <h2 class="text-2xl font-bold mb-6 text-center">Create Account</h2>
+          <form class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">First Name</label>
+                <input
+                  type="text"
+                  id="register-firstname"
+                  class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                  placeholder="First name"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
+                <input
+                  type="text"
+                  id="register-lastname"
+                  class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                  placeholder="Last name"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+              <input
+                type="email"
+                id="register-email"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="Enter your email"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+              <input
+                type="password"
+                id="register-password"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="Create a password"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Confirm Password</label>
+              <input
+                type="password"
+                id="register-confirm"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="Confirm password"
+              />
+            </div>
+            <label class="flex items-start">
+              <input
+                type="checkbox"
+                class="mt-1 rounded border-eternum-light-gray bg-eternum-gray text-eternum-blue focus:ring-eternum-blue"
+              />
+              <span class="ml-2 text-sm text-gray-300"
+                >I agree to the
+                <a href="#" class="text-eternum-blue hover:text-eternum-cyan">Terms of Service</a>
+                and
+                <a href="#" class="text-eternum-blue hover:text-eternum-cyan"
+                  >Privacy Policy</a
+                ></span
+              >
+            </label>
+            <button
+              type="submit"
+              class="w-full btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white py-3 rounded-lg font-semibold"
+            >
+              Create Account
+            </button>
+          </form>
+          <p class="mt-6 text-center text-sm text-gray-400">
+            Already have an account?
+            <button id="show-login" class="text-eternum-blue hover:text-eternum-cyan font-medium">
+              Sign in
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Trade Modal -->
+    <div id="trade-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+      <div
+        class="relative glass-effect rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      >
+        <button
+          id="close-trade-modal"
+          class="absolute top-4 right-4 text-gray-400 hover:text-white"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+
+        <h2 class="text-2xl font-bold mb-6">Record New Trade</h2>
+
+        <form id="trade-form" class="space-y-6">
+          <!-- Trade Setup -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Market</label>
+              <select
+                id="trade-market"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              >
+                <option value="">Select market</option>
+                <option value="EURUSD">EUR/USD</option>
+                <option value="GBPUSD">GBP/USD</option>
+                <option value="USDJPY">USD/JPY</option>
+                <option value="BTCUSD">Bitcoin (BTC/USD)</option>
+                <option value="ETHUSD">Ethereum (ETH/USD)</option>
+                <option value="AAPL">Apple (AAPL)</option>
+                <option value="TSLA">Tesla (TSLA)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Direction</label>
+              <select
+                id="trade-direction"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              >
+                <option value="">Select direction</option>
+                <option value="long">Long (Buy)</option>
+                <option value="short">Short (Sell)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Entry and Exit -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Entry Price</label>
+              <input
+                type="number"
+                id="trade-entry"
+                step="0.0001"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="0.0000"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Exit Price</label>
+              <input
+                type="number"
+                id="trade-exit"
+                step="0.0001"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="0.0000"
+              />
+            </div>
+          </div>
+
+          <!-- Risk Management -->
+          <div class="grid md:grid-cols-3 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Stop Loss</label>
+              <input
+                type="number"
+                id="trade-sl"
+                step="0.0001"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="0.0000"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Take Profit</label>
+              <input
+                type="number"
+                id="trade-tp"
+                step="0.0001"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="0.0000"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Position Size</label>
+              <input
+                type="number"
+                id="trade-size"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="1.00"
+              />
+            </div>
+          </div>
+
+          <!-- Strategy and Time -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Strategy</label>
+              <select
+                id="trade-strategy"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              >
+                <option value="">Select strategy</option>
+                <option value="swing">Swing Trading</option>
+                <option value="day">Day Trading</option>
+                <option value="scalp">Scalping</option>
+                <option value="position">Position Trading</option>
+                <option value="breakout">Breakout</option>
+                <option value="trend">Trend Following</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Timeframe</label>
+              <select
+                id="trade-timeframe"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              >
+                <option value="">Select timeframe</option>
+                <option value="1m">1 Minute</option>
+                <option value="5m">5 Minutes</option>
+                <option value="15m">15 Minutes</option>
+                <option value="1h">1 Hour</option>
+                <option value="4h">4 Hours</option>
+                <option value="1d">Daily</option>
+                <option value="1w">Weekly</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Psychology -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Pre-trade Emotion</label>
+              <select
+                id="trade-pre-emotion"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              >
+                <option value="">Select emotion</option>
+                <option value="confident">Confident</option>
+                <option value="neutral">Neutral</option>
+                <option value="anxious">Anxious</option>
+                <option value="excited">Excited</option>
+                <option value="fearful">Fearful</option>
+                <option value="hesitant">Hesitant</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Post-trade Emotion</label>
+              <select
+                id="trade-post-emotion"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              >
+                <option value="">Select emotion</option>
+                <option value="satisfied">Satisfied</option>
+                <option value="relieved">Relieved</option>
+                <option value="disappointed">Disappointed</option>
+                <option value="frustrated">Frustrated</option>
+                <option value="proud">Proud</option>
+                <option value="regretful">Regretful</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Trade Notes</label>
+            <textarea
+              id="trade-notes"
+              rows="4"
+              class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              placeholder="Describe your trade setup, reasoning, and observations..."
+            ></textarea>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex justify-end space-x-4 pt-6">
+            <button
+              type="button"
+              id="cancel-trade"
+              class="glass-effect px-6 py-3 rounded-lg hover:bg-eternum-light-gray transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-6 py-3 rounded-lg font-semibold"
+            >
+              Save Trade
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- New Note Modal -->
+    <div id="note-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+      <div
+        class="relative glass-effect rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      >
+        <button id="close-note-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+
+        <h2 class="text-2xl font-bold mb-6">Create Note</h2>
+
+        <form id="note-form" class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Title</label>
+            <input
+              type="text"
+              id="note-title"
+              class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              placeholder="Note title"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Category</label>
+            <select
+              id="note-category"
+              class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+            >
+              <option value="market-analysis">Market Analysis</option>
+              <option value="strategy">Strategy</option>
+              <option value="reflection">Reflection</option>
+              <option value="goals">Goals</option>
+              <option value="general">General</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Content</label>
+            <textarea
+              id="note-content"
+              rows="8"
+              class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              placeholder="Write your note here..."
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Tags</label>
+            <input
+              type="text"
+              id="note-tags"
+              class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              placeholder="trading, analysis, forex (comma separated)"
+            />
+          </div>
+
+          <div class="flex justify-end space-x-4 pt-6">
+            <button
+              type="button"
+              id="cancel-note"
+              class="glass-effect px-6 py-3 rounded-lg hover:bg-eternum-light-gray transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-6 py-3 rounded-lg font-semibold"
+            >
+              Save Note
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+      <div
+        class="relative glass-effect rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      >
+        <button
+          id="close-settings-modal"
+          class="absolute top-4 right-4 text-gray-400 hover:text-white"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+
+        <h2 class="text-2xl font-bold mb-6">Settings</h2>
+
+        <div class="space-y-6">
+          <!-- Profile Settings -->
+          <div class="border-b border-eternum-light-gray pb-6">
+            <h3 class="text-lg font-semibold mb-4">Profile</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">First Name</label>
+                <input
+                  type="text"
+                  id="settings-firstname"
+                  class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
+                <input
+                  type="text"
+                  id="settings-lastname"
+                  class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                />
+              </div>
+            </div>
+            <div class="mt-4">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+              <input
+                type="email"
+                id="settings-email"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+              />
+            </div>
+          </div>
+
+          <!-- Trading Settings -->
+          <div class="border-b border-eternum-light-gray pb-6">
+            <h3 class="text-lg font-semibold mb-4">Trading Preferences</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2"
+                  >Default Account Size</label
+                >
+                <input
+                  type="number"
+                  id="settings-account-size"
+                  class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                  placeholder="10000"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Default Risk %</label>
+                <input
+                  type="number"
+                  id="settings-risk-percent"
+                  step="0.1"
+                  class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                  placeholder="2.0"
+                />
+              </div>
+            </div>
+            <div class="mt-4">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Preferred Markets</label>
+              <input
+                type="text"
+                id="settings-markets"
+                class="form-input w-full bg-eternum-gray border border-eternum-light-gray rounded-lg px-4 py-3 text-white focus:outline-none focus:border-eternum-blue"
+                placeholder="Forex, Crypto, Stocks"
+              />
+            </div>
+          </div>
+
+          <!-- Privacy Settings -->
+          <div class="border-b border-eternum-light-gray pb-6">
+            <h3 class="text-lg font-semibold mb-4">Privacy & Security</h3>
+            <div class="space-y-4">
+              <label class="flex items-center justify-between">
+                <div>
+                  <span class="text-sm font-medium">Two-Factor Authentication</span>
+                  <p class="text-xs text-gray-400">Add an extra layer of security</p>
+                </div>
+                <button
+                  class="w-12 h-6 bg-eternum-light-gray rounded-full relative transition-colors"
+                >
+                  <div
+                    class="w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-transform"
+                  ></div>
+                </button>
+              </label>
+
+              <label class="flex items-center justify-between">
+                <div>
+                  <span class="text-sm font-medium">Data Analytics</span>
+                  <p class="text-xs text-gray-400">Help improve the platform</p>
+                </div>
+                <button class="w-12 h-6 bg-eternum-blue rounded-full relative transition-colors">
+                  <div
+                    class="w-5 h-5 bg-white rounded-full absolute top-0.5 right-0.5 transition-transform"
+                  ></div>
+                </button>
+              </label>
+
+              <label class="flex items-center justify-between">
+                <div>
+                  <span class="text-sm font-medium">Email Notifications</span>
+                  <p class="text-xs text-gray-400">Receive updates via email</p>
+                </div>
+                <button class="w-12 h-6 bg-eternum-blue rounded-full relative transition-colors">
+                  <div
+                    class="w-5 h-5 bg-white rounded-full absolute top-0.5 right-0.5 transition-transform"
+                  ></div>
+                </button>
+              </label>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex justify-end space-x-4 pt-6">
+            <button
+              id="cancel-settings"
+              class="glass-effect px-6 py-3 rounded-lg hover:bg-eternum-light-gray transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              id="save-settings"
+              class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-6 py-3 rounded-lg font-semibold"
+            >
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div id="notifications-container" class="fixed top-20 right-4 z-50 space-y-2">
+      <!-- Notifications will be dynamically added here -->
+    </div>
+
+    <!-- Loading Overlay -->
+    <div
+      id="loading-overlay"
+      class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+    >
+      <div class="glass-effect rounded-lg p-8 text-center">
+        <div
+          class="animate-spin w-8 h-8 border-2 border-eternum-blue border-t-transparent rounded-full mx-auto mb-4"
+        ></div>
+        <p class="text-gray-300 loading-dots">Loading</p>
+      </div>
+    </div>
+
+    <!-- Service Worker Registration (will use /sw.js served from public/) -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(e => console.warn('SW registration failed', e));
+        });
+      }
+    </script>
+  </body>
+</html>
