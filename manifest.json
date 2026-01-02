@@ -1,94 +1,9 @@
 {
-  "name": "Eternum Trading Journal",
   "short_name": "Eternum",
-  "description": "Professional trading journal for disciplined traders. Track performance, analyze psychology, and improve trading outcomes.",
-  "start_url": "/",
+  "name": "Eternum Trading Journal",
+  "icons": [],
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#0a0e1a",
-  "theme_color": "#3b82f6",
-  "orientation": "portrait-primary",
-  "categories": ["finance", "productivity", "business"],
-  "lang": "en",
-  "scope": "/",
-
-  "icons": [
-    {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%230a0e1a'/><rect x='48' y='80' width='96' height='32' fill='%233b82f6' rx='16'/><rect x='64' y='96' width='64' height='32' fill='%2306b6d4' rx='16'/><text x='96' y='140' text-anchor='middle' fill='white' font-family='Arial' font-size='24' font-weight='bold'>E</text></svg>",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%230a0e1a'/><rect x='128' y='224' width='256' height='64' fill='%233b82f6' rx='32'/><rect x='160' y='288' width='192' height='64' fill='%2306b6d4' rx='32'/><text x='256' y='400' text-anchor='middle' fill='white' font-family='Arial' font-size='64' font-weight='bold'>E</text></svg>",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ],
-
-  "screenshots": [
-    {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%230a0e1a'/><text x='640' y='360' text-anchor='middle' fill='white' font-family='Arial' font-size='48'>Eternum Trading Journal</text></svg>",
-      "sizes": "1280x720",
-      "type": "image/svg+xml",
-      "form_factor": "wide"
-    },
-    {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 844'><rect width='390' height='844' fill='%230a0e1a'/><text x='195' y='422' text-anchor='middle' fill='white' font-family='Arial' font-size='32'>Eternum Trading Journal</text></svg>",
-      "sizes": "390x844",
-      "type": "image/svg+xml",
-      "form_factor": "narrow"
-    }
-  ],
-
-  "shortcuts": [
-    {
-      "name": "New Trade",
-      "short_name": "Trade",
-      "description": "Quickly record a new trade",
-      "url": "/?action=new-trade",
-      "icons": [
-        {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2'><path d='M12 6v6m0 0v6m0-6h6m-6 0H6'/></svg>",
-          "sizes": "24x24"
-        }
-      ]
-    },
-    {
-      "name": "Dashboard",
-      "short_name": "Dashboard",
-      "description": "View trading performance dashboard",
-      "url": "/?section=dashboard",
-      "icons": [
-        {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2'><path d='M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'/></svg>",
-          "sizes": "24x24"
-        }
-      ]
-    },
-    {
-      "name": "Analytics",
-      "short_name": "Analytics",
-      "description": "View detailed trading analytics",
-      "url": "/?section=analytics",
-      "icons": [
-        {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2'><path d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z'/></svg>",
-          "sizes": "24x24"
-        }
-      ]
-    }
-  ],
-
-  "prefer_related_applications": false,
-
-  "related_applications": [],
-
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
-
-  "launch_handler": {
-    "client_mode": "navigate-existing"
-  }
+  "theme_color": "#000000",
+  "background_color": "#000000"
 }
