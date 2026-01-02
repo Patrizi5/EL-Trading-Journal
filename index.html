@@ -212,6 +212,7 @@
     </style>
   </head>
   <body class="bg-eternum-dark text-white font-sans overflow-x-hidden">
+    <a href="#main" class="sr-only focus:not-sr-only p-2">Skip to main content</a>
     <!-- Background Canvas -->
     <canvas id="background-canvas" class="fixed inset-0 w-full h-full -z-10"></canvas>
 
@@ -280,6 +281,7 @@
             <!-- Theme Toggle -->
             <button
               id="theme-toggle"
+              aria-label="Toggle theme"
               class="p-2 rounded-lg glass-effect-light hover:bg-eternum-light-gray transition-colors"
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -296,6 +298,9 @@
             <div class="relative">
               <button
                 id="user-menu-btn"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-label="Open user menu"
                 class="flex items-center space-x-2 p-2 rounded-lg glass-effect-light hover:bg-eternum-light-gray transition-colors"
               >
                 <div
@@ -352,7 +357,8 @@
             <!-- Mobile Menu Button -->
             <button
               id="mobile-menu-btn"
-              class="md:hidden p-2 rounded-lg glass-effect-light hover:bg-eternum-light-gray transition-colors"
+              aria-label="Toggle mobile menu"
+              class="md:hidden p-2 rounded-lg glass-effect-light hover:bg-eternum-light-gray transition-colors">
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -444,12 +450,14 @@
           <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <button
               id="get-started-btn"
+              aria-label="Get started"
               class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-8 py-3 rounded-lg font-semibold"
             >
               Get Started Free
             </button>
             <button
               id="login-btn"
+              aria-label="Open sign in dialog"
               class="glass-effect px-8 py-3 rounded-lg font-semibold hover:bg-eternum-light-gray transition-colors"
             >
               Sign In
@@ -688,6 +696,7 @@
             </div>
             <button
               id="new-trade-btn"
+              aria-label="Record new trade"
               class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-6 py-3 rounded-lg font-semibold mt-4 sm:mt-0"
             >
               <svg
@@ -772,6 +781,7 @@
 
                 <button
                   id="export-trades-btn"
+                  aria-label="Export trades"
                   class="glass-effect px-4 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors"
                 >
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -851,6 +861,7 @@
             <div class="flex space-x-2">
               <button
                 id="prev-page"
+                aria-label="Previous page"
                 class="glass-effect px-3 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -864,6 +875,7 @@
               </button>
               <button
                 id="next-page"
+                aria-label="Next page"
                 class="glass-effect px-3 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -924,6 +936,7 @@
               <div class="flex items-center space-x-4">
                 <button
                   id="chart-draw-btn"
+                  aria-label="Draw on chart"
                   class="glass-effect px-4 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors"
                 >
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -938,6 +951,7 @@
 
                 <button
                   id="chart-indicator-btn"
+                  aria-label="Chart indicators"
                   class="glass-effect px-4 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors"
                 >
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -952,6 +966,7 @@
 
                 <button
                   id="chart-fullscreen-btn"
+                  aria-label="Toggle chart fullscreen"
                   class="glass-effect px-4 py-2 rounded-lg hover:bg-eternum-light-gray transition-colors"
                 >
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1363,6 +1378,7 @@
             </div>
             <button
               id="new-note-btn"
+              aria-label="Create note"
               class="btn-primary bg-gradient-to-r from-eternum-blue to-eternum-cyan text-white px-6 py-3 rounded-lg font-semibold mt-4 sm:mt-0"
             >
               <svg
@@ -1687,10 +1703,10 @@
 
     <!-- Modals -->
     <!-- Login/Register Modal -->
-    <div id="auth-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div id="auth-modal" role="dialog" aria-modal="true" aria-label="Authentication dialog" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
       <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
       <div class="relative glass-effect rounded-lg p-8 max-w-md w-full">
-        <button id="close-auth-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+        <button id="close-auth-modal" aria-label="Close dialog" class="absolute top-4 right-4 text-gray-400 hover:text-white">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
@@ -1746,6 +1762,7 @@
             Don't have an account?
             <button
               id="show-register"
+              aria-label="Show registration form"
               class="text-eternum-blue hover:text-eternum-cyan font-medium"
             >
               Sign up
@@ -1827,7 +1844,7 @@
           </form>
           <p class="mt-6 text-center text-sm text-gray-400">
             Already have an account?
-            <button id="show-login" class="text-eternum-blue hover:text-eternum-cyan font-medium">
+            <button id="show-login" aria-label="Show sign in form" class="text-eternum-blue hover:text-eternum-cyan font-medium">
               Sign in
             </button>
           </p>
@@ -1836,13 +1853,14 @@
     </div>
 
     <!-- New Trade Modal -->
-    <div id="trade-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div id="trade-modal" role="dialog" aria-modal="true" aria-labelledby="trade-modal-title" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
       <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
       <div
         class="relative glass-effect rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
       >
         <button
           id="close-trade-modal"
+          aria-label="Close dialog"
           class="absolute top-4 right-4 text-gray-400 hover:text-white"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1855,7 +1873,7 @@
           </svg>
         </button>
 
-        <h2 class="text-2xl font-bold mb-6">Record New Trade</h2>
+        <h2 id="trade-modal-title" class="text-2xl font-bold mb-6">Record New Trade</h2>
 
         <form id="trade-form" class="space-y-6">
           <!-- Trade Setup -->
@@ -2053,12 +2071,12 @@
     </div>
 
     <!-- New Note Modal -->
-    <div id="note-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div id="note-modal" role="dialog" aria-modal="true" aria-labelledby="note-modal-title" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
       <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
       <div
         class="relative glass-effect rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
       >
-        <button id="close-note-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+        <button id="close-note-modal" aria-label="Close dialog" class="absolute top-4 right-4 text-gray-400 hover:text-white">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
@@ -2069,7 +2087,7 @@
           </svg>
         </button>
 
-        <h2 class="text-2xl font-bold mb-6">Create Note</h2>
+        <h2 id="note-modal-title" class="text-2xl font-bold mb-6">Create Note</h2>
 
         <form id="note-form" class="space-y-6">
           <div>
@@ -2136,13 +2154,14 @@
     </div>
 
     <!-- Settings Modal -->
-    <div id="settings-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-modal-title" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
       <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
       <div
         class="relative glass-effect rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
       >
         <button
           id="close-settings-modal"
+          aria-label="Close dialog"
           class="absolute top-4 right-4 text-gray-400 hover:text-white"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2155,7 +2174,7 @@
           </svg>
         </button>
 
-        <h2 class="text-2xl font-bold mb-6">Settings</h2>
+        <h2 id="settings-modal-title" class="text-2xl font-bold mb-6">Settings</h2>
 
         <div class="space-y-6">
           <!-- Profile Settings -->
