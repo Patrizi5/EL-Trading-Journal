@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [selectedTrade, setSelectedTrade] = useState(null);
   const queryClient = useQueryClient();
 
-  const { data: trades = [], isLoading: tradesLoading, refetch: refetchTrades } = useQuery({
+  const { data: trades = [], refetch: refetchTrades } = useQuery({
     queryKey: ['trades'],
     queryFn: () => base44.entities.Trade.list('-entry_date')
   });

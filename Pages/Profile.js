@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { User, Mail, Calendar, Save, LogOut, Loader2 } from 'lucide-react';
+import { User, Mail, Calendar, LogOut, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { toast } from 'sonner';
+// toast removed (unused)
 
 export default function Profile() {
   const [user, setUser] = useState(null);

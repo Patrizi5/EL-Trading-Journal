@@ -3,12 +3,64 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search, TrendingUp } from 'lucide-react';
 
-const POPULAR_SYMBOLS = {
-  stocks: ['AAPL', 'TSLA', 'NVDA', 'MSFT', 'GOOGL', 'AMZN', 'META'],
-  crypto: ['BTC/USD', 'ETH/USD', 'SOL/USD', 'BNB/USD', 'XRP/USD'],
-  forex: ['EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD'],
-  options: ['SPY', 'QQQ', 'IWM', 'AAPL', 'TSLA']
+export const POPULAR_SYMBOLS = {
+  // US Stocks & ETFs
+  stocks: [
+    'AAPL', 'TSLA', 'NVDA', 'MSFT', 'GOOGL', 'AMZN', 'META', 'NFLX',
+    'AMD', 'INTC', 'DIS', 'SHOP', 'SQ', 'PYPL', 'UBER', 'NKE', 'V', 'MA',
+    'SPY', 'QQQ', 'IWM', 'DIA', 'ARKK'
+  ],
+
+  // Cryptocurrencies (USD pairs)
+  crypto: [
+    'BTC/USD', 'ETH/USD', 'SOL/USD', 'BNB/USD', 'XRP/USD',
+    'ADA/USD', 'DOGE/USD', 'LTC/USD', 'DOT/USD', 'AVAX/USD',
+    'SHIB/USD', 'MATIC/USD', 'LINK/USD', 'UNI/USD'
+  ],
+
+  // Forex majors
+  forex: [
+    'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD',
+    'NZD/USD', 'USD/CHF', 'EUR/GBP', 'EUR/JPY', 'GBP/JPY',
+    'AUD/JPY', 'EUR/CHF', 'GBP/CHF', 'NZD/JPY'
+  ],
+
+  // Options (most-traded underlying symbols)
+  options: [
+    'AAPL', 'TSLA', 'SPY', 'QQQ', 'IWM', 'MSFT', 'AMZN', 
+    'NVDA', 'META', 'GOOGL', 'NFLX', 'AMD', 'DIS'
+  ],
+
+  // Futures
+  futures: [
+    'ES',  // S&P 500 E-mini
+    'NQ',  // Nasdaq 100 E-mini
+    'YM',  // Dow Jones E-mini
+    'CL',  // Crude Oil
+    'GC',  // Gold
+    'SI',  // Silver
+    'NG',  // Natural Gas
+    'HG',  // Copper
+    'BTC', // Bitcoin Futures
+    'ETH'  // Ethereum Futures
+  ],
+
+  // Commodities
+  commodities: [
+    'CL',  // Crude Oil
+    'GC',  // Gold
+    'SI',  // Silver
+    'NG',  // Natural Gas
+    'HG',  // Copper
+    'ZC',  // Corn
+    'ZW',  // Wheat
+    'ZS',  // Soybeans
+    'CC',  // Cocoa
+    'SB'   // Sugar
+  ]
 };
+
+
 
 export default function SymbolPicker({ marketType = 'stocks', onSelect, value }) {
   const [search, setSearch] = useState('');

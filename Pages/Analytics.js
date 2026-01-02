@@ -4,8 +4,8 @@ import { base44 } from '@/api/base44Client';
 import { Card } from "@/components/ui/card";
 import { BarChart3, TrendingUp, TrendingDown, Target, Calendar, Brain, Zap, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LineChart, Line, CartesianGrid } from 'recharts';
-import { format, startOfWeek, endOfWeek, eachDayOfInterval, parseISO, isWithinInterval } from 'date-fns';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, CartesianGrid } from 'recharts';
+import { format } from 'date-fns';
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -208,7 +208,7 @@ export default function Analytics() {
               </div>
               {emotionData.length > 0 ? (
                 <div className="grid gap-3">
-                  {emotionData.map((item, index) => (
+                  {emotionData.map((item, _index) => (
                     <div key={item.emotion} className="flex items-center justify-between p-4 rounded-xl bg-slate-800/30">
                       <div className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-pink-400" />

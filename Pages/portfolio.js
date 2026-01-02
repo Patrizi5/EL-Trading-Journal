@@ -106,7 +106,7 @@ export default function Portfolio() {
   const totalPLPercent = totalCost > 0 ? (totalPL / totalCost) * 100 : 0;
 
   // Pie chart data
-  const chartData = portfolio.map((h, i) => ({
+  const chartData = portfolio.map((h, _i) => ({
     name: h.symbol,
     value: h.shares * (h.current_price || h.avg_cost),
     percentage: ((h.shares * (h.current_price || h.avg_cost) / totalValue) * 100).toFixed(1)
